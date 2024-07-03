@@ -1,10 +1,10 @@
 import React from "react";
 
-export default function UserUsername() {
+export default function UserUsername(props) {
     return (
         <div>
             <b>Username: </b>
-            <span></span>
+            <span>{props.username}</span>
         </div>
     )
 }
