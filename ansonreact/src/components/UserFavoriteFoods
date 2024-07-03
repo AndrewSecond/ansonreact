@@ -11,6 +11,5 @@ export default function UserFavoriteFoods() {
                     <li>Meat</li>
                 </ul>
             </section>
-        </div>
     )
 }
