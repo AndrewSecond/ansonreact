@@ -1,10 +1,10 @@
-import React from "react";
+import styles from './styles.module.css';
 
 export default function UserUsername(props) {
     return (
-        <div>
+        <>
             <b>Username: </b>
-            <span>{props.username}</span>
-        </div>
+            <span className={styles.username}>{props}</span>
+        </>
     )
 }

@@ -1,11 +1,29 @@
-import React from "react";
-import UserProfile from './components/UserProfile';
+import LoginForm from "./components/LoginForm";
 
 export default function App() {
+ 
     return (
-        <div>
-            <h1>Root Component</h1>
-            <UserProfile />
-        </div>
+        <>
+            <LoginForm />
+        </>
+
     )
 }
+
+const mockUsers = [
+    {
+        id:1,
+        username:"nino",
+        email:"nino@gmail.com",
+    },
+    {
+        id:2,
+        username:"antonio",
+        email:"lsdfddddddddddddddddko@gmail.com",
+    },
+    {
+        id:3,
+        username:"dgfsfg",
+        email:"dsfgfsg@gmail.com",
+    },
+]
