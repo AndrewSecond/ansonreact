@@ -21,9 +21,9 @@ export default function RegisterForm() {
           name="username"
           value={authdata.username}
           onChange={(e) => { 
-            setAuthdata({
-              ...authdata, 
-              username: e.target.value});
+            setAuthdata((currentState) => ({
+              ...currentState, 
+              username: e.target.value}));
           }} />
       </div>
       <div>
@@ -60,6 +60,5 @@ export default function RegisterForm() {
       <div><span>Display Name: {authdata.displayname}</span></div>
       <button disabled={notValid}>Sign Up</button> 
     </form>
-    
   )
 }
