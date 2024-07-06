@@ -28,7 +28,6 @@ export default function LoginForm() {
         <label htmlFor="password">Password</label>
         <br />
         <input 
-          type="text" 
           id="password" 
           name="password"
           type="password" 
