@@ -5,6 +5,8 @@ export default function RegisterForm() {
   const [password, setPassword] = useState("");
   const [displayname, setDisplayname] = useState("");
 
+  const notValid = !username || !password || !displayname;
+
   return (
     <form method="POST" onSubmit={(e) => {
       
@@ -47,7 +49,8 @@ export default function RegisterForm() {
       <button>Login</button>
       <div><span>Username: {username}</span></div>  
       <div><span>Password: {password}</span></div>  
-      <div><span>Display Name: {displayname}</span></div>  
+      <div><span>Display Name: {displayname}</span></div>
+      <button disabled={notValid}>Sign Up</button> 
     </form>
     
   )
