@@ -1,11 +1,13 @@
 import {useState} from 'react';
 
 export default function RegisterForm() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [displayname, setDisplayname] = useState("");
+  const [authdata, setAuthdata] = useState({
+    username: "",
+    password: "",
+    displayname: "",
+  });
 
-  const notValid = !username || !password || !displayname;
+  const notValid = !authdata.username || !authdata.password || !authdata.displayname;
 
   return (
     <form method="POST" onSubmit={(e) => {
@@ -17,9 +19,11 @@ export default function RegisterForm() {
           type="text" 
           id="username" 
           name="username"
-          value={username}
+          value={authdata.username}
           onChange={(e) => { 
-            setUsername(e.target.value);
+            setAuthdata({
+              ...authdata, 
+              username: e.target.value});
           }} />
       </div>
       <div>
@@ -30,9 +34,11 @@ export default function RegisterForm() {
           id="password" 
           name="password"
           type="password" 
-          value={password}
+          value={authdata.password}
           onChange={(e) => {
-            setPassword(e.target.value);
+            setAuthdata({
+              ...authdata, 
+              password: e.target.value});
           }} />
       </div>
       <div>
@@ -41,15 +47,17 @@ export default function RegisterForm() {
           type="text" 
           id="displayname" 
           name="displayname"
-          value={displayname}
+          value={authdata.displayname}
           onChange={(e) => {
-            setDisplayname(e.target.value);
+            setAuthdata({
+              ...authdata, 
+              displayname: e.target.value});
           }} />
       </div>
       <button>Login</button>
-      <div><span>Username: {username}</span></div>  
-      <div><span>Password: {password}</span></div>  
-      <div><span>Display Name: {displayname}</span></div>
+      <div><span>Username: {authdata.username}</span></div>  
+      <div><span>Password: {authdata.password}</span></div>  
+      <div><span>Display Name: {authdata.displayname}</span></div>
       <button disabled={notValid}>Sign Up</button> 
     </form>
     
