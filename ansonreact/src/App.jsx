@@ -1,38 +1,23 @@
 import { useState, useEffect } from "react";
+import LoginForm from "./components/Loginform";
 
 export default function App() {
-    const [counter, setCounter] = useState(0);
-    const [sync, setSync] = useState(false);
-    const [users, setUsers] = useState([]);
+    const [posts, setPosts] = useState({
+        title: "",
+        body: "",
+    });
 
-    useEffect(() => {
-        fetch("https://jsonplaceholder.typicode.com/users", {
-            method: "GET",
-        })
-            .then((response) => response.json())
-            .then((json) => setUsers(json))
-            .catch((error) => console.log(error))
-    }, []);
+    const [toggle, setToggle] = useState(false);
 
-    function clicked() {
-        setCounter((count) => count+1)
-    }
-
-    function synced(e) {
-        setSync((bool) => !bool);
-        setTimeout(() => setSync((bool) => !bool), 10);
-    }
 
     return (
         <>
-           <div>
-            <div>You clicked the button {counter} times</div>
-            <button onClick={clicked}>Click me</button>
-            <button onClick={cynced}>Sync</button>
-           </div> 
-
+            <div>
+                <button onClick={() => setToggle((state) => !state)} >Toggle</button>
+                {toggle && <LoginForm />}
+            </div>
+            
         </>
-
     )
 }
 

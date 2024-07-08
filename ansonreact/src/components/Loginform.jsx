@@ -1,19 +1,23 @@
-import React from "react";
+import { useState, useEffect } from "react";
 
 export default function LoginForm() {
+
+  useEffect(() => {
+    const resizeEventHandler = () => {
+        console.log("Window/ViewPort Resized!");
+    }
+    window.addEventListener('resize', resizeEventHandler);
+
+    return () => {
+      console.log("Unmounting LoginForm");
+      console.log("Removing Resize Event Listener");
+      window.removeEventListener('resize', resizeEventHandler);
+    }
+  }, []);
+
     return (
       <form method="POST" onSubmit={(e) => {
         e.preventDefault();
-        const formData = new FormData();
-        const username = formData.get('username');
-        const password = formData.get('password');
-        fetch("http://localhost:3001/api/login", {
-          body: {
-            username,
-            password,
-          },
-          method: "POST",
-        });
       }} >
         <label htmlFor="username">Username</label>
         <br />
