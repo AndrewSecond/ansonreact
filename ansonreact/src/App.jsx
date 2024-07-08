@@ -1,50 +1,36 @@
-import { useState } from "react";
-import UserDetails from "./components/UserDetails";
+import { useState, useEffect } from "react";
 
 export default function App() {
-    const [users, setUsers] = useState(mockUsers);
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [counter, setCounter] = useState(3);
+    const [counter, setCounter] = useState(0);
+    const [sync, setSync] = useState(false);
+    const [users, setUsers] = useState([]);
 
-    function changeUser(e) {
-        setUsername(e.target.value)
+    useEffect(() => {
+        fetch("https://jsonplaceholder.typicode.com/users", {
+            method: "GET",
+        })
+            .then((response) => response.json())
+            .then((json) => setUsers(json))
+            .catch((error) => console.log(error))
+    }, []);
+
+    function clicked() {
+        setCounter((count) => count+1)
     }
 
-    function changeEmail(e) {
-        setEmail(e.target.value)
+    function synced(e) {
+        setSync((bool) => !bool);
+        setTimeout(() => setSync((bool) => !bool), 10);
     }
 
     return (
         <>
-            <form onSubmit={(e) => {
-                e.preventDefault();
-                const newUser = {
-                    id: counter,
-                    username: username,
-                    email: email,
-                };
-                setCounter((count) => count+1);
-                if (username&&email) {
-                    setUsers((state) => [...state, newUser])
-                }
-            }} >
-                <div>
-                    <label htmlFor="username">Username</label>
-                    <input type="text" id="username" name="username" 
-                    value="username" onChange={changeUser} />
-                </div>
-                <div>
-                    <label htmlFor="email">Email</label>
-                    <input type="text" id="email" name="email" 
-                    value="email" onChange={changeEmail} />
-                </div>
-                <button>Add user</button>
-            </form>
-            {users.map((user) => (
-            <UserDetails key={user.id} user={user} setUsers={setUsers}/>
-            ))}
-            {users[0] && <div>{users[0].email}</div>}
+           <div>
+            <div>You clicked the button {counter} times</div>
+            <button onClick={clicked}>Click me</button>
+            <button onClick={cynced}>Sync</button>
+           </div> 
+
         </>
 
     )
