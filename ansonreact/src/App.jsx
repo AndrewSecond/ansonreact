@@ -3,10 +3,44 @@ import UserDetails from "./components/UserDetails";
 
 export default function App() {
     const [users, setUsers] = useState(mockUsers);
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [counter, setCounter] = useState(3);
+
+    function changeUser(e) {
+        setUsername(e.target.value)
+    }
+
+    function changeEmail(e) {
+        setEmail(e.target.value)
+    }
+
     return (
         <>
-            <button>Create</button>
-            <br />
+            <form onSubmit={(e) => {
+                e.preventDefault();
+                const newUser = {
+                    id: counter,
+                    username: username,
+                    email: email,
+                };
+                setCounter((count) => count+1);
+                if (username&&email) {
+                    setUsers((state) => [...state, newUser])
+                }
+            }} >
+                <div>
+                    <label htmlFor="username">Username</label>
+                    <input type="text" id="username" name="username" 
+                    value="username" onChange={changeUser} />
+                </div>
+                <div>
+                    <label htmlFor="email">Email</label>
+                    <input type="text" id="email" name="email" 
+                    value="email" onChange={changeEmail} />
+                </div>
+                <button>Add user</button>
+            </form>
             {users.map((user) => (
             <UserDetails key={user.id} user={user} setUsers={setUsers}/>
             ))}
