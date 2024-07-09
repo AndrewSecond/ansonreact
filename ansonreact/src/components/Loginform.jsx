@@ -6,12 +6,18 @@ export default function LoginForm() {
     const resizeEventHandler = () => {
         console.log("Window/ViewPort Resized!");
     }
+    const handleDocumentClick = () => {
+      console.log("Clicked Document");
+    }
+
     window.addEventListener('resize', resizeEventHandler);
+    document.addEventListener('click', handleDocumentClick);
 
     return () => {
       console.log("Unmounting LoginForm");
       console.log("Removing Resize Event Listener");
       window.removeEventListener('resize', resizeEventHandler);
+      window.removeEventListener('click', handleDocumentClick);
     }
   }, []);
 
