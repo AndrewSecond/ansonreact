@@ -1,43 +1,22 @@
 import { useState, useEffect } from "react";
-import LoginForm from "./components/Loginform";
+import PostContainer from './components/PostContainer';
+import {UserContext} from './utils/contexts/UserContext';
+// import { PostContentButtons } from "./components/PostContentButtons";
 
 export default function App() {
-    const [posts, setPosts] = useState({
-        title: "",
-        body: "",
+    const [userData, setUserData] = useState({
+        id: 12,
+        username: 'anson',
+        email: 'anson@gmail.com',
+        displayName: 'ninja',  
     });
-
-    const [toggle, setToggle] = useState(false);
-
-
     return (
         <>
+        <UserContext.Provider value={{...userData, setUserData}}>
             <div>
-                <button onClick={() => setToggle((state) => !state)} >Toggle</button>
-                {toggle && <LoginForm />}
-            </div>
-            
+                <PostContainer />
+            </div>        
+        </UserContext.Provider>
         </>
-    )
+    );
 }
-
-const mockUsers = [
-    {
-        id:1,
-        username:"nino",
-        password:"nino12334",
-        email:"nino@gmail.com",
-    },
-    {
-        id:2,
-        username:"antonio",
-        password:"sdfsdf12334",
-        email:"lsdddddko@gmail.com",
-    },
-    {
-        id:3,
-        username:"djus",
-        password:"nidsf94394",
-        email:"dsfgfsg@gmail.com",
-    },
-]
