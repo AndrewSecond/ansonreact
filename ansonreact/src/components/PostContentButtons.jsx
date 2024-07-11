@@ -8,7 +8,7 @@ export function PostContentButtons(){
     <div>
       <div><span>PostContentButtons</span></div>
       <button
-         onClick={() => {setUserData((state) => ({...state, displayName: "updated display name", id: id+1}))}} >
+         onClick={() => {setUserData((state) => ({...state, name: "updated display name", id: id+1}))}} >
         {id}
       </button>
     </div>

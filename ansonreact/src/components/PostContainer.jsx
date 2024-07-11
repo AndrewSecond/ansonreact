@@ -9,7 +9,7 @@ export default function PostContainer() {
     <div>
       <div><span>PostContainer</span></div>
       <div>
-        {userContextData.displayName}
+        {userContextData.name}
       </div>
       <PostContent data={data} />
     </div>

@@ -4,6 +4,9 @@ export const UserContext = createContext({
   id: 0,
   username: '',
   email: '',
-  displayName: '',
+  name: '',
+  company: {
+    name: '',
+  },
   setUserData: () => {},
 });

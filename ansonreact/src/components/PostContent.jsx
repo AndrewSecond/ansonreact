@@ -7,7 +7,10 @@ export default function PostContant({data}) {
   return (
     <div>
       <div><span>PostContent</span></div>
-      {userContextData.email}
+      {data} <br />
+      {userContextData.username} <br />
+      {/* {userContextData.company.name} <br /> */}
+      {userContextData.email} <br />
       <PostContentButtons />
     </div>
   )
